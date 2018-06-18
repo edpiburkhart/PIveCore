@@ -1,0 +1,23 @@
+{
+  "name": "pivecore",
+  "version": "0.0.0",
+  "description": "Base functions for PIve",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edpiburkhart/PIveCore.git"
+  },
+  "author": "Ed Pi BU",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edpiburkhart/PIveCore/issues"
+  },
+  "homepage": "https://github.com/edpiburkhart/PIveCore#readme",
+  "dependencies": {
+    "mime": "^2.3.1"
+  }
+}
