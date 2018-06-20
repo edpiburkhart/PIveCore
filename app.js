@@ -1,19 +1,23 @@
 const fs = require('fs');
 const mime = require('mime');
+const path = require('path');
 
-const baseDir = "C:/Users/Edgar Pierre/Google Drive/";
-files = fs.readdir(baseDir, function(err, files) {
-    if (err)
-        console.log("Reading error!");
-    else
-        files.forEach(function(file) {
-            if (file[0] != ".") {
-                console.log(file);
-                stats = fs.statSync(baseDir + file)
-                if (stats.isDirectory())
-                    console.log("dir")
-                else
-                    console.log(mime.getType(baseDir + file))
+function getDirContent (pa, callback) {
+    var res = [];
+    fs.readdir(pa, function(err, files) {
+        if (!err) {
+            for (var i = 0; i < files.length; i++) {
+                file = files[i];
+                if (file[0] != ".") {
+                    stats = fs.statSync(path.join(pa, file));
+                    if (stats.isDirectory())
+                        res.push({name: file, type: "dir"});
+                    else
+                        res.push({name: file, type: mime.getType(path.join(pa, file))});
+                }
             }
-        });
-});
+            callback(undefined, res);
+        } else callback(new Error("Bad path"), []);
+    });
+}
+exports.getDirContent = getDirContent;
